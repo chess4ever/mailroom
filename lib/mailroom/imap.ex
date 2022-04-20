@@ -224,7 +224,8 @@ defmodule Mailroom.IMAP do
 
   def idle(pid, callback_pid, callback_message, opts \\ []) when is_pid(callback_pid) do
     timeout = Keyword.get(opts, :timeout, 1_500_000)
-    GenServer.cast(pid, {:idle, timeout, callback_pid, callback_message}) && pid
+    GenServer.cast(pid, {:idle, timeout, callback_pid, callback_message})
+    pid
   end
 
   def cancel_idle(pid) do
